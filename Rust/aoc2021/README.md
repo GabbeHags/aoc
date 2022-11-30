@@ -13,7 +13,7 @@ My attempt at Advent of Code 2021.
 | [day 1](https://adventofcode.com/2021/day/1)   | [Code :heavy_check_mark:](./src/day1.rs) `Part 1: 290.72 ns`, `Part 2: 2.2905 µs` |
 | [day 2](https://adventofcode.com/2021/day/2)   | [Code :heavy_check_mark:](./src/day2.rs) `Part 1: 827.80 ns`, `Part 2: 748.55 ns` |
 | [day 3](https://adventofcode.com/2021/day/3)   | [Code :heavy_check_mark:](./src/day3.rs) `Part 1: 12.418 µs`, `Part 2: 419.28 µs` |
-| [day 4](https://adventofcode.com/2021/day/4)   | [Code :x:](./src/day4.rs)  |
+<!-- | [day 4](https://adventofcode.com/2021/day/4)   | [Code :x:](./src/day4.rs)  |
 | [day 5](https://adventofcode.com/2021/day/5)   | [Code :x:](./src/day5.rs)  |
 | [day 6](https://adventofcode.com/2021/day/6)   | [Code :x:](./src/day6.rs)  |
 | [day 7](https://adventofcode.com/2021/day/7)   | [Code :x:](./src/day7.rs)  |
@@ -34,7 +34,7 @@ My attempt at Advent of Code 2021.
 | [day 22](https://adventofcode.com/2021/day/22) | [Code :x:](./src/day22.rs) |
 | [day 23](https://adventofcode.com/2021/day/23) | [Code :x:](./src/day23.rs) |
 | [day 24](https://adventofcode.com/2021/day/24) | [Code :x:](./src/day24.rs) |
-| [day 25](https://adventofcode.com/2021/day/25) | [Code :x:](./src/day25.rs) |
+| [day 25](https://adventofcode.com/2021/day/25) | [Code :x:](./src/day25.rs) | -->
 
 
 ## Usage
