@@ -1,4 +1,4 @@
-# Advent Of Code 2021 in Rust
+# Advent of Code 2021 in Rust
 My attempt at Advent of Code 2021.
 
 This project uses [`aoc-runner`][aoc-runner] and [`cargo-aoc`][cargo-aoc]
