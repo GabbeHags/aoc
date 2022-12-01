@@ -1,6 +1,6 @@
-#[derive(Debug, Clone)]
+#[derive(Debug)]
 pub struct Elf {
-    foods: Vec<isize>
+    foods: Vec<isize>,
 }
 
 impl Elf {
@@ -11,22 +11,28 @@ impl Elf {
 
 #[aoc_generator(day1)]
 pub fn input_generator(input: &str) -> Vec<Elf> {
-    input.split("\n\n").map(|str| {
-        Elf {
-            foods: str.split("\n").map(|calories| {
-                calories.parse().unwrap()
-            }).collect()
-        }
-    }).collect()
+    input
+        .split("\n\n")
+        .map(|str| Elf {
+            foods: str
+                .split("\n")
+                .map(|calories| calories.parse().unwrap())
+                .collect(),
+        })
+        .collect()
 }
 
 #[aoc(day1, part1)]
 pub fn part_1(input: &[Elf]) -> isize {
-    input.iter().map(|elf| elf.get_total_calories()).max().unwrap()
+    input
+        .iter()
+        .map(|elf| elf.get_total_calories())
+        .max()
+        .unwrap()
 }
 
 #[aoc(day1, part2)]
-pub fn part_2(input: &[Elf]) -> isize {    
+pub fn part_2(input: &[Elf]) -> isize {
     let mut top_3 = [0, 0, 0];
     for elf in input {
         let calories = elf.get_total_calories();
@@ -40,7 +46,6 @@ pub fn part_2(input: &[Elf]) -> isize {
         } else if top_3[2] <= calories {
             top_3[2] = calories;
         }
-
     }
     top_3.iter().sum()
 }
@@ -49,6 +54,7 @@ mod test {
 
     use super::*;
 
+    #[allow(dead_code)]
     fn get_test_input() -> Vec<Elf> {
         let input: &str = "1000
 2000
