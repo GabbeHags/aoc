@@ -10,8 +10,8 @@ This project uses [`aoc-runner`][aoc-runner] and [`cargo-aoc`][cargo-aoc]
 
 |             Advent of Code Links               |               Solutions                    |
 |:----------------------------------------------:|:------------------------------------------:|
-| [Day 1](https://adventofcode.com/2022/day/1)   | [Code](./src/day1.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` |
-<!-- | [Day 2](https://adventofcode.com/2022/day/2)   | [Code](./src/day2.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
+| [Day 1](https://adventofcode.com/2022/day/1)   | [Code](./src/day1.rs) &nbsp;&nbsp; `Part 1: 931.39 ns`, `Part 2: 1.0157 us` |
+| [Day 2](https://adventofcode.com/2022/day/2)   | [Code](./src/day2.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` |
 <!-- | [Day 3](https://adventofcode.com/2022/day/3)   | [Code](./src/day3.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
 <!-- | [Day 4](https://adventofcode.com/2022/day/4)   | [Code](./src/day4.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
 <!-- | [Day 5](https://adventofcode.com/2022/day/5)   | [Code](./src/day5.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
