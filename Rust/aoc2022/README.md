@@ -1,7 +1,7 @@
 # Advent of Code 2022 in Rust
 My attempt at Advent of Code 2022.
 
-This project uses [`aoc-runner`][aoc-runner] and [`cargo-aoc`][cargo-aoc]
+This project uses [`cargo-aoc`][cargo-aoc] to compile and run each day.
 
 ### Private leaderboard
 * [Leaderboard](https://adventofcode.com/2022/leaderboard/private/view/642677)
