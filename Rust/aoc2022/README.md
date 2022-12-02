@@ -94,6 +94,10 @@ pub fn part_2(input: input_to_parts) -> part2_answer {
 cargo aoc
 ```
 
+### Get the benchmarks of the latest solution.
+```bash
+cargo aoc bench -g
+```
 
 ## Solutions written with
 * rustc 1.65.0
