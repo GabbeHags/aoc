@@ -8,8 +8,8 @@ This project uses [`cargo-aoc`][cargo-aoc] to compile and run each day.
 
 ## Days
 
-Time is my best time with best solutions. 
-The time include both the parsing and solving of each part.
+Time is my best time with my best solutions. 
+The time include both the generation and solving of each part.
 
 See [Bench Times](bench-times) to see the benched time.
 
