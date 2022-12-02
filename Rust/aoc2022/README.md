@@ -13,7 +13,7 @@ The time include both the parsing and solving of each part.
 
 See [Bench Times](bench-times) to see the benched time.
 
-All solutions are measured on a `Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz`
+All solutions are measured on a `Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz`.
 
 | Advent of Code Links |         Solutions         |             Time Part 1             |              Time Part 2           |
 |:--------------------:|:-------------------------:|:-----------------------------------:|:----------------------------------:|
