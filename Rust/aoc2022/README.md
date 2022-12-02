@@ -8,34 +8,66 @@ This project uses [`cargo-aoc`][cargo-aoc] to compile and run each day.
 
 ## Days
 
-|             Advent of Code Links               |               Solutions                    |
-|:----------------------------------------------:|:------------------------------------------:|
-| [Day 1](https://adventofcode.com/2022/day/1)   | [Code](./src/day1.rs) &nbsp;&nbsp; `Part 1: 931.39 ns`, `Part 2: 1.0157 us` |
-| [Day 2](https://adventofcode.com/2022/day/2)   | [Code](./src/day2.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` |
-<!-- | [Day 3](https://adventofcode.com/2022/day/3)   | [Code](./src/day3.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 4](https://adventofcode.com/2022/day/4)   | [Code](./src/day4.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 5](https://adventofcode.com/2022/day/5)   | [Code](./src/day5.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 6](https://adventofcode.com/2022/day/6)   | [Code](./src/day6.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 7](https://adventofcode.com/2022/day/7)   | [Code](./src/day7.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 8](https://adventofcode.com/2022/day/8)   | [Code](./src/day8.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 9](https://adventofcode.com/2022/day/9)   | [Code](./src/day9.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 10](https://adventofcode.com/2022/day/10) | [Code](./src/day10.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 11](https://adventofcode.com/2022/day/11) | [Code](./src/day11.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 12](https://adventofcode.com/2022/day/12) | [Code](./src/day12.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 13](https://adventofcode.com/2022/day/13) | [Code](./src/day13.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 14](https://adventofcode.com/2022/day/14) | [Code](./src/day14.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 15](https://adventofcode.com/2022/day/15) | [Code](./src/day15.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 16](https://adventofcode.com/2022/day/16) | [Code](./src/day16.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 17](https://adventofcode.com/2022/day/17) | [Code](./src/day17.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 18](https://adventofcode.com/2022/day/18) | [Code](./src/day18.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 19](https://adventofcode.com/2022/day/19) | [Code](./src/day19.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 20](https://adventofcode.com/2022/day/20) | [Code](./src/day20.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 21](https://adventofcode.com/2022/day/21) | [Code](./src/day21.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 22](https://adventofcode.com/2022/day/22) | [Code](./src/day22.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 23](https://adventofcode.com/2022/day/23) | [Code](./src/day23.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 24](https://adventofcode.com/2022/day/24) | [Code](./src/day24.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
-<!-- | [Day 25](https://adventofcode.com/2022/day/25) | [Code](./src/day25.rs) &nbsp;&nbsp; `Part 1: `, `Part 2: ` | -->
+Time is my best time with best solutions. 
+The time include both the parsing and solving of each part.
 
+See [Bench Times](bench-times) to see the benched time.
+
+All solutions are measured on a `Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz`
+
+| Advent of Code Links |         Solutions         |             Time Part 1             |              Time Part 2           |
+|:--------------------:|:-------------------------:|:-----------------------------------:|:----------------------------------:|
+| [Day 1][day01]       | [Solution](./src/day1.rs)  | [48.857 us](bench-times/day1.txt)  | [48.911 us](bench-times/day1.txt)  |
+<!-- | [Day 2][day02]       | [Solution](./src/day2.rs)  | [???????us](bench-times/day2.txt)  | [???????us](bench-times/day2.txt)  | -->
+<!-- | [Day 3][day03]       | [Solution](./src/day3.rs)  | [???????us](bench-times/day3.txt)  | [???????us](bench-times/day3.txt)  | -->
+<!-- | [Day 4][day04]       | [Solution](./src/day4.rs)  | [???????us](bench-times/day4.txt)  | [???????us](bench-times/day4.txt)  | -->
+<!-- | [Day 5][day05]       | [Solution](./src/day5.rs)  | [???????us](bench-times/day5.txt)  | [???????us](bench-times/day5.txt)  | -->
+<!-- | [Day 6][day06]       | [Solution](./src/day6.rs)  | [???????us](bench-times/day6.txt)  | [???????us](bench-times/day6.txt)  | -->
+<!-- | [Day 7][day07]       | [Solution](./src/day7.rs)  | [???????us](bench-times/day7.txt)  | [???????us](bench-times/day7.txt)  | -->
+<!-- | [Day 8][day08]       | [Solution](./src/day8.rs)  | [???????us](bench-times/day8.txt)  | [???????us](bench-times/day8.txt)  | -->
+<!-- | [Day 9][day09]       | [Solution](./src/day9.rs)  | [???????us](bench-times/day9.txt)  | [???????us](bench-times/day9.txt)  | -->
+<!-- | [Day 10][day10]      | [Solution](./src/day10.rs) | [???????us](bench-times/day10.txt) | [???????us](bench-times/day10.txt) | -->
+<!-- | [Day 11][day11]      | [Solution](./src/day11.rs) | [???????us](bench-times/day11.txt) | [???????us](bench-times/day11.txt) | -->
+<!-- | [Day 12][day12]      | [Solution](./src/day12.rs) | [???????us](bench-times/day12.txt) | [???????us](bench-times/day12.txt) | -->
+<!-- | [Day 13][day13]      | [Solution](./src/day13.rs) | [???????us](bench-times/day13.txt) | [???????us](bench-times/day13.txt) | -->
+<!-- | [Day 14][day14]      | [Solution](./src/day14.rs) | [???????us](bench-times/day14.txt) | [???????us](bench-times/day14.txt) | -->
+<!-- | [Day 15][day15]      | [Solution](./src/day15.rs) | [???????us](bench-times/day15.txt) | [???????us](bench-times/day15.txt) | -->
+<!-- | [Day 16][day16]      | [Solution](./src/day16.rs) | [???????us](bench-times/day16.txt) | [???????us](bench-times/day16.txt) | -->
+<!-- | [Day 17][day17]      | [Solution](./src/day17.rs) | [???????us](bench-times/day17.txt) | [???????us](bench-times/day17.txt) | -->
+<!-- | [Day 18][day18]      | [Solution](./src/day18.rs) | [???????us](bench-times/day18.txt) | [???????us](bench-times/day18.txt) | -->
+<!-- | [Day 19][day19]      | [Solution](./src/day19.rs) | [???????us](bench-times/day19.txt) | [???????us](bench-times/day19.txt) | -->
+<!-- | [Day 20][day20]      | [Solution](./src/day20.rs) | [???????us](bench-times/day20.txt) | [???????us](bench-times/day20.txt) | -->
+<!-- | [Day 21][day21]      | [Solution](./src/day21.rs) | [???????us](bench-times/day21.txt) | [???????us](bench-times/day21.txt) | -->
+<!-- | [Day 22][day22]      | [Solution](./src/day22.rs) | [???????us](bench-times/day22.txt) | [???????us](bench-times/day22.txt) | -->
+<!-- | [Day 23][day23]      | [Solution](./src/day23.rs) | [???????us](bench-times/day23.txt) | [???????us](bench-times/day23.txt) | -->
+<!-- | [Day 24][day24]      | [Solution](./src/day24.rs) | [???????us](bench-times/day24.txt) | [???????us](bench-times/day24.txt) | -->
+<!-- | [Day 25][day25]      | [Solution](./src/day25.rs) | [???????us](bench-times/day15.txt) | [???????us](bench-times/day15.txt) | -->
+
+[day01]: https://adventofcode.com/2022/day/1
+[day02]: https://adventofcode.com/2022/day/2
+[day03]: https://adventofcode.com/2022/day/3
+[day04]: https://adventofcode.com/2022/day/4
+[day05]: https://adventofcode.com/2022/day/5
+[day06]: https://adventofcode.com/2022/day/6
+[day07]: https://adventofcode.com/2022/day/7
+[day08]: https://adventofcode.com/2022/day/8
+[day09]: https://adventofcode.com/2022/day/9
+[day10]: https://adventofcode.com/2022/day/10
+[day11]: https://adventofcode.com/2022/day/11
+[day12]: https://adventofcode.com/2022/day/12
+[day13]: https://adventofcode.com/2022/day/13
+[day14]: https://adventofcode.com/2022/day/14
+[day15]: https://adventofcode.com/2022/day/15
+[day16]: https://adventofcode.com/2022/day/16
+[day17]: https://adventofcode.com/2022/day/17
+[day18]: https://adventofcode.com/2022/day/18
+[day19]: https://adventofcode.com/2022/day/19
+[day20]: https://adventofcode.com/2022/day/20
+[day21]: https://adventofcode.com/2022/day/21
+[day22]: https://adventofcode.com/2022/day/22
+[day23]: https://adventofcode.com/2022/day/23
+[day24]: https://adventofcode.com/2022/day/24
+[day25]: https://adventofcode.com/2022/day/25
 
 ## Usage
 

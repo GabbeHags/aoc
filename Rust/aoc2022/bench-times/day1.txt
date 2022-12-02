@@ -1,0 +1,12 @@
+Day1 - Part1/set        time:   [9.5390 ns 9.6734 ns 9.8142 ns]
+Day1 - Part1/vec        time:   [242.39 ns 243.91 ns 245.58 ns]
+Day1 - Part2/set        time:   [15.657 ns 15.892 ns 16.164 ns]
+Day1 - Part2/vec        time:   [296.01 ns 299.19 ns 302.61 ns]
+Generator Day1/set      time:   [61.577 us 62.882 us 64.851 us]
+Generator Day1/vec      time:   [48.615 us 49.315 us 50.325 us]
+
+Total time
+Part1/set time: 61.586 us
+Part1/vec time: 48.857 us
+Part2/set time: 61.592 us
+Part2/vec time: 48.911 us
