@@ -19,7 +19,7 @@ All solutions are measured on a `Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz`.
 |:--------------------:|:-------------------------:|:-----------------------------------:|:----------------------------------:|
 | [Day 1][day01]       | [Solution](./src/day1.rs)  | [48.857 us](bench-times/day1.txt)  | [48.911 us](bench-times/day1.txt)  |
 | [Day 2][day02]       | [Solution](./src/day2.rs)  | [40.539 us](bench-times/day2.txt)  | [40.903 us](bench-times/day2.txt)  |
-| [Day 3][day03]       | [Solution](./src/day3.rs)  | [???????us](bench-times/day3.txt)  | [???????us](bench-times/day3.txt)  |
+| [Day 3][day03]       | [Solution](./src/day3.rs)  | [46.453 us](bench-times/day3.txt)  | [163.13 us](bench-times/day3.txt)  |
 <!-- | [Day 4][day04]       | [Solution](./src/day4.rs)  | [???????us](bench-times/day4.txt)  | [???????us](bench-times/day4.txt)  | -->
 <!-- | [Day 5][day05]       | [Solution](./src/day5.rs)  | [???????us](bench-times/day5.txt)  | [???????us](bench-times/day5.txt)  | -->
 <!-- | [Day 6][day06]       | [Solution](./src/day6.rs)  | [???????us](bench-times/day6.txt)  | [???????us](bench-times/day6.txt)  | -->
