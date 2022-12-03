@@ -7,14 +7,11 @@ pub fn part_1(input: &str) -> u32 {
             let left = chars.next().unwrap() - 0x40 - 1;
             chars.next();
             let right = chars.next().unwrap() - 0x40 - 0x17 - 1;
-            let mut score = 1;
+            let mut score = 1 + right;
             if left.abs_diff(right) == 0 {
-                score += 3 + right
-            } else {
-                score += right;
-                if (right + 1) % 3 != left {
-                    score += 6;
-                }
+                score += 3
+            } else if (right + 1) % 3 != left {
+                score += 6;
             }
             score as u32
         })
