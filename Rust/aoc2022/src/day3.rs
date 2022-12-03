@@ -1,34 +1,34 @@
-use std::collections::HashSet;
-
-
 #[aoc(day3, part1)]
 pub fn part_1(input: &str) -> u32 {
-    input.lines().map(|line| {
-        let storage: Vec<_> = line.bytes().collect();
-        let cs = storage.split_at(line.len()/2);
-        let intersection = cs.0.iter().find(|c| cs.1.contains(c)).unwrap();
-        if ('a' as u8..='z' as u8).contains(&intersection) {
-            (*intersection - 0x60) as u32
-        } else {
-            (*intersection - 0x40 + 26) as u32
-        }
-    }).sum()
+    input
+        .lines()
+        .map(|e| {
+            let (c1, c2) = e.as_bytes().split_at(e.len() / 2);
+            let intersection = c1.iter().find(|c| c2.contains(c)).unwrap();
+            if ('a' as u8..='z' as u8).contains(&intersection) {
+                *intersection as u32 - 0x60
+            } else {
+                *intersection as u32 - 0x40 + 26
+            }
+        })
+        .sum()
 }
 
 #[aoc(day3, part2)]
 pub fn part_2(input: &str) -> u32 {
-    let lines = input.lines().collect::<Vec<_>>();
-    let mut groups = lines.chunks(3);
+    let mut groups = input.lines();
     let mut result = 0;
-    while let Some([e1, e2, e3]) = groups.next() {
-        let s1 = e1.bytes().collect::<HashSet<_>>();
-        let s2 = e2.bytes().collect::<HashSet<_>>();
-        let mut inter_s1_s2 = s1.intersection(&s2);
-        let intersection = inter_s1_s2.find(|c| e3.as_bytes().contains(c)).unwrap();
+    while let Some(e1) = groups.next() {
+        let e2 = groups.next().unwrap();
+        let e3 = groups.next().unwrap();
+        let intersection = e1
+            .bytes()
+            .find(|char| e2.as_bytes().contains(char) && e3.as_bytes().contains(char))
+            .unwrap();
         if ('a' as u8..='z' as u8).contains(&intersection) {
-            result += (*intersection - 0x60) as u32
+            result += intersection as u32 - 0x60;
         } else {
-            result += (*intersection - 0x40 + 26) as u32
+            result += intersection as u32 - 0x40 + 26 as u32;
         }
     }
     result
