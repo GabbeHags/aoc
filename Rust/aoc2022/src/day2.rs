@@ -69,7 +69,7 @@ B Z"
 
     #[test]
     fn test_example_part2_() {
-        assert_eq!(part_2_(&get_example_input()), 23);
+        assert_eq!(part_2(&get_example_input()), 23);
     }
 
     #[test]
