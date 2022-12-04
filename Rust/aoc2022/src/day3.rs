@@ -1,17 +1,27 @@
+use std::result;
+
+trait Score {
+    fn score(&self) -> u32;
+}
+
+impl Score for u8 {
+    fn score(&self) -> u32 {
+        if (b'a'..=b'z').contains(self) {
+            (*self - b'a' + 1) as u32
+        } else {
+            (*self - b'A' + 27) as u32
+        }
+    }
+}
+
 #[aoc(day3, part1)]
 pub fn part_1(input: &str) -> u32 {
-    input
-        .lines()
-        .map(|e| {
-            let (c1, c2) = e.as_bytes().split_at(e.len() / 2);
-            let intersection = c1.iter().find(|c| c2.contains(c)).unwrap();
-            if (b'a'..=b'z').contains(intersection) {
-                *intersection as u32 - 0x60
-            } else {
-                *intersection as u32 - 0x40 + 26
-            }
-        })
-        .sum()
+    let mut result = 0;
+    for line in input.lines() {
+        let (c1, c2) = line.as_bytes().split_at(line.len() / 2);
+        result += c1.iter().find(|c| c2.contains(c)).unwrap().score();
+    }
+    result
 }
 
 #[aoc(day3, part2)]
@@ -19,17 +29,13 @@ pub fn part_2(input: &str) -> u32 {
     let mut groups = input.lines();
     let mut result = 0;
     while let Some(e1) = groups.next() {
-        let e2 = groups.next().unwrap();
-        let e3 = groups.next().unwrap();
-        let intersection = e1
+        let e2 = groups.next().unwrap().as_bytes();
+        let e3 = groups.next().unwrap().as_bytes();
+        result += e1
             .bytes()
-            .find(|char| e2.as_bytes().contains(char) && e3.as_bytes().contains(char))
-            .unwrap();
-        if (b'a'..=b'z').contains(&intersection) {
-            result += intersection as u32 - 0x60;
-        } else {
-            result += intersection as u32 - 0x40 + 26;
-        }
+            .find(|char| e2.contains(char) && e3.contains(char))
+            .unwrap()
+            .score();
     }
     result
 }
