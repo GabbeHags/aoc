@@ -1,4 +1,3 @@
-
 type LMin = u8;
 type LMax = u8;
 type RMin = u8;
@@ -6,20 +5,22 @@ type RMax = u8;
 
 #[inline(always)]
 fn line_to_nums(input: &str) -> (LMin, LMax, RMin, RMax) {
-    let (l_min, rest) = input.split_once('-').unwrap();
-    let (l_max, rest) = rest.split_once(',').unwrap();
-    let (r_min, r_max) = rest.split_once('-').unwrap();
-    let nums = [l_min.as_bytes(), l_max.as_bytes(), r_min.as_bytes(), r_max.as_bytes()];
-    let mut num = 0;
-    let mut results = [0,0,0,0];
-    for (index,n) in nums.iter().enumerate() {
-        for (i, c) in n.iter().enumerate() {
-            num += (*c - b'0') * 10_u8.pow((n.len()-i-1) as u32);
-        }
-        results[index] = num;
-        num = 0;
-    }
-    (results[0], results[1], results[2], results[3])
+    let mut input_bytes = input.bytes();
+    (
+        input_bytes
+            .by_ref()
+            .take_while(|c| *c != b'-')
+            .fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
+        input_bytes
+            .by_ref()
+            .take_while(|c| *c != b',')
+            .fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
+        input_bytes
+            .by_ref()
+            .take_while(|c| *c != b'-')
+            .fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
+        input_bytes.fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
+    )
 }
 
 #[aoc(day4, part1)]
