@@ -4,22 +4,22 @@ type RMin = u8;
 type RMax = u8;
 
 #[inline(always)]
-fn line_to_nums(input: &str) -> (LMin, LMax, RMin, RMax) {
-    let mut input_bytes = input.bytes();
+fn line_to_nums(line: &str) -> (LMin, LMax, RMin, RMax) {
+    let mut line_bytes = line.bytes();
     (
-        input_bytes
+        line_bytes
             .by_ref()
             .take_while(|c| *c != b'-')
             .fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
-        input_bytes
+        line_bytes
             .by_ref()
             .take_while(|c| *c != b',')
             .fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
-        input_bytes
+        line_bytes
             .by_ref()
             .take_while(|c| *c != b'-')
             .fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
-        input_bytes.fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
+        line_bytes.fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
     )
 }
 
@@ -28,11 +28,7 @@ pub fn part_1(input: &str) -> u32 {
     let mut result = 0;
     for line in input.lines() {
         let (l_min, l_max, r_min, r_max) = line_to_nums(line);
-        let l_range = l_min..=l_max;
-        let r_range = r_min..=r_max;
-        if l_range.contains(&r_min) && l_range.contains(&r_max)
-            || r_range.contains(&l_min) && r_range.contains(&l_max)
-        {
+        if (l_min <= r_min && r_max <= l_max) || (r_min <= l_min && l_max <= r_max) {
             result += 1;
         }
     }
@@ -44,12 +40,10 @@ pub fn part_2(input: &str) -> u32 {
     let mut result = 0;
     for line in input.lines() {
         let (l_min, l_max, r_min, r_max) = line_to_nums(line);
-        let l_range = l_min..=l_max;
-        let r_range = r_min..=r_max;
-        if l_range.contains(&r_min)
-            || l_range.contains(&r_max)
-            || r_range.contains(&l_min)
-            || r_range.contains(&l_max)
+        if (l_min <= r_min && r_min <= l_max)
+            || (r_min <= l_min && l_min <= r_max)
+            || (l_min <= r_max && r_max <= l_max)
+            || (r_min <= l_max && l_max <= r_max)
         {
             result += 1;
         }
