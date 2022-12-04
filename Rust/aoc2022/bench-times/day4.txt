@@ -1,2 +1,2 @@
-Day4 - Part1/(default)  time:   [65.470 us 66.794 us 68.468 us]
+Day4 - Part1/(default)  time:   [64.465 us 65.310 us 66.403 us]
 Day4 - Part2/(default)  time:   [59.062 us 59.878 us 60.896 us]
