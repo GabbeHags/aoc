@@ -61,21 +61,21 @@ B Z"
 
     #[test]
     fn test_example_part1() {
-        assert_eq!(part_1(&get_example_input()), 31);
+        assert_eq!(part_1(get_example_input()), 31);
     }
 
     #[test]
     fn test_example_part2_() {
-        assert_eq!(part_2(&get_example_input()), 23);
+        assert_eq!(part_2(get_example_input()), 23);
     }
 
     #[test]
     fn test_real_part1() {
-        assert_eq!(part_1(&get_real_input()), 12740);
+        assert_eq!(part_1(get_real_input()), 12740);
     }
 
     #[test]
     fn test_real_part2() {
-        assert_eq!(part_2(&get_real_input()), 11980);
+        assert_eq!(part_2(get_real_input()), 11980);
     }
 }

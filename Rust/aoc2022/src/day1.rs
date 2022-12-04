@@ -38,7 +38,7 @@ pub fn part_1_vec(input: &GenOutVec) -> u32 {
 
 #[aoc(day1, part1, set)]
 pub fn part_1_set(input: &GenOutSet) -> u32 {
-    *input.into_iter().next_back().unwrap()
+    *input.iter().next_back().unwrap()
 }
 
 #[aoc(day1, part2, vec)]
@@ -61,7 +61,7 @@ pub fn part_2_vec(input: &GenOutVec) -> u32 {
 
 #[aoc(day1, part2, set)]
 pub fn part_2_set(input: &GenOutSet) -> u32 {
-    let mut rev_input = input.into_iter().rev();
+    let mut rev_input = input.iter().rev();
     rev_input.next().unwrap() + rev_input.next().unwrap() + rev_input.next().unwrap()
 }
 
