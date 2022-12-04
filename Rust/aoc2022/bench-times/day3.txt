@@ -1,2 +1,2 @@
-Day3 - Part1/(default)  time:   [27.458 us 27.896 us 28.501 us]
-Day3 - Part2/(default)  time:   [31.013 us 31.139 us 31.275 us]
+Day3 - Part1/(default)  time:   [10.688 us 10.821 us 11.008 us]
+Day3 - Part2/(default)  time:   [13.562 us 13.656 us 13.781 us]
