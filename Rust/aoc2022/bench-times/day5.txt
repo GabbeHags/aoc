@@ -1,2 +1,2 @@
-Day5 - Part1/(default)  time:   [89.237 us 90.543 us 92.219 us]
-Day5 - Part2/(default)  time:   [92.574 us 93.798 us 95.322 us]
+Day5 - Part1/(default)  time:   [67.070 us 67.368 us 67.701 us]
+Day5 - Part2/(default)  time:   [68.068 us 68.313 us 68.568 us]
