@@ -1,4 +1,2 @@
-Day6 - Part1/one        time:   [3.3421 us 3.3594 us 3.3837 us]
-Day6 - Part1/two        time:   [3.0382 us 3.0636 us 3.0970 us]
-Day6 - Part2/one        time:   [11.494 us 11.606 us 11.775 us]
-Day6 - Part2/two        time:   [12.972 us 13.165 us 13.403 us]
+Day6 - Part1/one        time:   [2.4658 us 2.5410 us 2.6360 us]
+Day6 - Part2/one        time:   [5.9293 us 6.0565 us 6.2112 us]
