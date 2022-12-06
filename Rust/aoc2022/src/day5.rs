@@ -24,22 +24,22 @@ fn generate_stacks(input: &str) -> Vec<Vec<u8>> {
     stacks
 }
 
-fn generate_instruction(line: &str) -> [u8; 3] {
+fn generate_instruction(line: &str) -> [u32; 3] {
     let mut line_bytes = line.bytes().skip(5);
     [
         line_bytes
             .by_ref()
             .take_while(|c| c.is_ascii_digit())
-            .fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
+            .fold(0, |acc, d| acc * 10 + (d & 0b00001111) as u32),
         line_bytes
             .by_ref()
             .skip(5)
             .take_while(|c| c.is_ascii_digit())
-            .fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
+            .fold(0, |acc, d| acc * 10 + (d & 0b00001111) as u32),
         line_bytes
             .skip(3)
             .take_while(|c| c.is_ascii_digit())
-            .fold(0, |acc, d| acc * 10 + (d & 0b00001111)),
+            .fold(0, |acc, d| acc * 10 + (d & 0b00001111) as u32),
     ]
 }
 
@@ -57,12 +57,16 @@ fn get_top_of_stacks(stacks: &[Vec<u8>]) -> String {
 pub fn part_1(input: &str) -> String {
     let (stack_lines, instruction_lines) = input.split_once("\n\n").unwrap();
     let mut stacks = generate_stacks(stack_lines);
+    let mut pops = Vec::with_capacity(stacks[0].len());
     for [amount, from, to] in instruction_lines.lines().map(generate_instruction) {
-        let mut pops = vec![];
-        for _ in 0..amount {
-            pops.push(stacks[(from - 1) as usize].pop().unwrap());
-        }
-        stacks[(to - 1) as usize].extend(pops);
+        let stack_len = stacks[(from - 1) as usize].len();
+        let drain = stacks[(from - 1) as usize].drain(
+            (stack_len - amount as usize)
+                ..stack_len,
+        ).rev();
+        pops.extend(drain);
+        stacks[(to - 1) as usize].extend(&pops);
+        pops.clear();
     }
 
     get_top_of_stacks(&stacks)
@@ -72,14 +76,16 @@ pub fn part_1(input: &str) -> String {
 pub fn part_2(input: &str) -> String {
     let (stack_lines, instruction_lines) = input.split_once("\n\n").unwrap();
     let mut stacks = generate_stacks(stack_lines);
-
+    let mut pops = Vec::with_capacity(stacks[0].len());
     for [amount, from, to] in instruction_lines.lines().map(generate_instruction) {
-        let mut pops = vec![];
-        for _ in 0..amount {
-            pops.push(stacks[(from - 1) as usize].pop().unwrap());
-        }
-        pops.reverse();
-        stacks[(to - 1) as usize].extend(pops);
+        let stack_len = stacks[(from - 1) as usize].len();
+        let drain = stacks[(from - 1) as usize].drain(
+            (stack_len - amount as usize)
+                ..stack_len,
+        );
+        pops.extend(drain);
+        stacks[(to - 1) as usize].extend(&pops);
+        pops.clear();
     }
 
     get_top_of_stacks(&stacks)
