@@ -1,0 +1,2 @@
+Day6 - Part1/(default)  time:   [3.4502 us 3.5119 us 3.5901 us]
+Day6 - Part2/(default)  time:   [12.061 us 12.333 us 12.712 us]
