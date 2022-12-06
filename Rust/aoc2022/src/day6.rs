@@ -16,20 +16,33 @@ fn find_unique_window(s: &str, window_len: usize) -> usize {
 
     let mut unique_count = 0;
 
-    while index < input_as_bytes_len {
-        let set_index = (input_as_bytes[index] - b'a') as usize;
+    let mut set_index;
+
+    for _ in 0..window_len {
+        set_index = (input_as_bytes[index] - b'a') as usize;
 
         arr_set[set_index] += 1;
         if arr_set[set_index] == 1 {
             unique_count += 1;
         }
-        if index >= window_len {
-            let set_win_index = (input_as_bytes[index - window_len] - b'a') as usize;
+        index += 1;
+    }
 
-            arr_set[set_win_index] -= 1;
-            if arr_set[set_win_index] == 0 {
-                unique_count -= 1;
-            }
+    let mut set_win_index;
+
+    while index < input_as_bytes_len {
+        set_index = (input_as_bytes[index] - b'a') as usize;
+
+        arr_set[set_index] += 1;
+        if arr_set[set_index] == 1 {
+            unique_count += 1;
+        }
+
+        set_win_index = (input_as_bytes[index - window_len] - b'a') as usize;
+
+        arr_set[set_win_index] -= 1;
+        if arr_set[set_win_index] == 0 {
+            unique_count -= 1;
         }
 
         index += 1;
@@ -111,5 +124,4 @@ mod test {
     fn test_real_part2() {
         assert_eq!(part_2(get_real_input()), 3051);
     }
-
 }
