@@ -64,16 +64,6 @@ pub fn part_2(input: &str) -> usize {
     find_unique_window::<14>(input)
 }
 
-// #[aoc(day6, part1, two)]
-// pub fn part_1_2(input: &str) -> usize {
-//     sliding_window(input, 4)
-// }
-
-// #[aoc(day6, part2, two)]
-// pub fn part_2_2(input: &str) -> usize {
-//     sliding_window(input, 14)
-// }
-
 mod test {
     #![allow(unreachable_code, unused_imports)]
     use super::*;
@@ -134,58 +124,4 @@ mod test {
     fn test_real_part2() {
         assert_eq!(part_2(get_real_input()), 3051);
     }
-
-    // ---------------------------------------------------
-
-    // #[test]
-    // fn test_example_part1_0_2() {
-    //     assert_eq!(part_1_2("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 7);
-    // }
-    // #[test]
-    // fn test_example_part1_1_2() {
-    //     assert_eq!(part_1_2("bvwbjplbgvbhsrlpgdmjqwftvncz"), 5);
-    // }
-    // #[test]
-    // fn test_example_part1_2_2() {
-    //     assert_eq!(part_1_2("nppdvjthqldpwncqszvftbrmjlhg"), 6);
-    // }
-    // #[test]
-    // fn test_example_part1_3_2() {
-    //     assert_eq!(part_1_2("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 10);
-    // }
-    // #[test]
-    // fn test_example_part1_4_2() {
-    //     assert_eq!(part_1_2("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 11);
-    // }
-
-    // #[test]
-    // fn test_example_part2_0_2() {
-    //     assert_eq!(part_2_2("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 19);
-    // }
-    // #[test]
-    // fn test_example_part2_1_2() {
-    //     assert_eq!(part_2_2("bvwbjplbgvbhsrlpgdmjqwftvncz"), 23);
-    // }
-    // #[test]
-    // fn test_example_part2_2_2() {
-    //     assert_eq!(part_2_2("nppdvjthqldpwncqszvftbrmjlhg"), 23);
-    // }
-    // #[test]
-    // fn test_example_part2_3_2() {
-    //     assert_eq!(part_2_2("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 29);
-    // }
-    // #[test]
-    // fn test_example_part2_4_2() {
-    //     assert_eq!(part_2_2("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 26);
-    // }
-
-    // #[test]
-    // fn test_real_part1_2() {
-    //     assert_eq!(part_1_2(get_real_input()), 1235);
-    // }
-
-    // #[test]
-    // fn test_real_part2_2() {
-    //     assert_eq!(part_2_2(get_real_input()), 3051);
-    // }
 }
