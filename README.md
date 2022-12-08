@@ -3,7 +3,7 @@
 
 * [The Official AoC Website](https://adventofcode.com/)
 * [Python](Python)
-  * [2021](Python/aoc2021)
+  * [2021 30x:star2:](Python/aoc2021)
 * [Rust](Rust)
-  * [2021](Rust/aoc2021)
-  * [2022](Rust/aoc2022)
+  * [2021 6x:star2:](Rust/aoc2021)
+  * [2022 14x:star2:](Rust/aoc2022)
