@@ -1,0 +1,2 @@
+Day10 - Part1/(default) time:   [3.7937 us 3.8484 us 3.9225 us]
+Day10 - Part2/(default) time:   [4.7115 us 4.7885 us 4.8947 us]
