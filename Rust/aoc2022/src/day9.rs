@@ -67,7 +67,7 @@ pub fn part_1(input: &str) -> usize {
     const KNOTS: usize= 2;
 
     let mut last_visits = HashSet::<Pos>::new();
-    let mut rope = (0..KNOTS).map(|_| Pos::new(0, 0)).collect::<Vec<_>>();
+    let mut rope = [Pos::new(0, 0); KNOTS];
     for ins in input.lines() {
         let (dir, steps) = ins.split_once(' ').unwrap();
         let dir = Dir::from(dir);
@@ -94,7 +94,7 @@ pub fn part_2(input: &str) -> usize {
     const KNOTS: usize= 10;
 
     let mut last_visits = HashSet::<Pos>::new();
-    let mut rope = (0..KNOTS).map(|_| Pos::new(0, 0)).collect::<Vec<_>>();
+    let mut rope = [Pos::new(0, 0); KNOTS];
     for ins in input.lines() {
         let (dir, steps) = ins.split_once(' ').unwrap();
         let dir = Dir::from(dir);
@@ -178,8 +178,8 @@ U 20
         assert_eq!(part_1(get_real_input()), 6563);
     }
 
-    //     #[test]
-    //     fn test_real_part2() {
-    //         assert_eq!(part_2(get_real_input()), 0);
-    //     }
+        #[test]
+        fn test_real_part2() {
+            assert_eq!(part_2(get_real_input()), 2653);
+        }
 }
