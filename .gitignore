@@ -1,3 +1,4 @@
 /Rust/**/target/
 /Rust/**/Cargo.lock
+/Rust/**/input/
 aoc.code-workspace
