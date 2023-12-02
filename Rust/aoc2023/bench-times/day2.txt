@@ -1,0 +1,5 @@
+Day2 - Part1/first      time:   [65.898 µs 66.224 µs 66.592 µs]
+Day2 - Part1/optimized  time:   [11.239 µs 11.335 µs 11.451 µs] 
+
+Day2 - Part2/first      time:   [66.641 µs 66.897 µs 67.178 µs] 
+Day2 - Part2/optimized  time:   [11.405 µs 11.481 µs 11.573 µs]
