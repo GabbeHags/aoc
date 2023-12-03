@@ -7,4 +7,4 @@
 * [Rust](Rust)
   * [2021 6x :star2:](Rust/aoc2021)
   * [2022 20x :star2:](Rust/aoc2022)
-  * [2023 4x :star2:](Rust/aoc2023)
+  * [2023 6x :star2:](Rust/aoc2023)

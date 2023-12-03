@@ -1,0 +1,5 @@
+Day3 - Part1/first      time:   [396.05 µs 399.22 µs 403.09 µs]
+Day3 - Part1/optimized  time:   [221.32 µs 222.88 µs 224.64 µs]
+
+Day3 - Part2/first      time:   [325.76 µs 329.05 µs 333.61 µs]
+Day3 - Part2/optimized  time:   [207.05 µs 208.31 µs 209.80 µs]
