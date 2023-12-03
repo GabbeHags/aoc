@@ -387,21 +387,17 @@ fn part1_optimized(input: &str) -> usize {
     let len = schematic.len();
     symbols
         .par_iter()
-        .map(|symbol_line| {
-            symbol_line
-                .iter()
-                .map(|(row, col, _symbol)| {
-                    ((row - 1).max(0)..=(row + 1).min(len)).fold(0, |mut acc, r| {
-                        let line = get_marked_line_ranges(&numbers, r, *col);
-                        if let Some(line) = line {
-                            for (row, range) in line {
-                                acc += parse_usize(&schematic[row][range.start..range.end]);
-                            }
-                        }
-                        acc
-                    })
-                })
-                .sum::<usize>()
+        .flatten_iter()
+        .map(|(row, col, _symbol)| {
+            ((row - 1).max(0)..=(row + 1).min(len)).fold(0, |mut acc, r| {
+                let line = get_marked_line_ranges(&numbers, r, *col);
+                if let Some(line) = line {
+                    for (row, range) in line {
+                        acc += parse_usize(&schematic[row][range.start..range.end]);
+                    }
+                }
+                acc
+            })
         })
         .sum()
 }
@@ -413,34 +409,30 @@ fn part2_optimized(input: &str) -> usize {
     let len = schematic.len();
     symbols
         .par_iter()
-        .map(|symbol_line| {
-            symbol_line
-                .iter()
-                .filter_map(|(row, col, symbol)| {
-                    if *symbol != b'*' {
-                        None
+        .flatten_iter()
+        .filter_map(|(row, col, symbol)| {
+            if *symbol != b'*' {
+                None
+            } else {
+                let mut gear_ratio_numbers = SmallVec::<[usize; 2]>::new();
+                ((row - 1).max(0)..=(row + 1).min(len)).for_each(|r| {
+                    let line = get_marked_line_ranges(&numbers, r, *col);
+                    if let Some(line) = line {
+                        for (row, range) in line {
+                            gear_ratio_numbers
+                                .push(parse_usize(&schematic[row][range.start..range.end]));
+                        }
+                    }
+                });
+                debug_assert!(!gear_ratio_numbers.spilled());
+                Some({
+                    if gear_ratio_numbers.len() == 2 {
+                        gear_ratio_numbers.iter().product::<usize>()
                     } else {
-                        let mut gear_ratio_numbers = SmallVec::<[usize; 2]>::new();
-                        ((row - 1).max(0)..=(row + 1).min(len)).for_each(|r| {
-                            let line = get_marked_line_ranges(&numbers, r, *col);
-                            if let Some(line) = line {
-                                for (row, range) in line {
-                                    gear_ratio_numbers
-                                        .push(parse_usize(&schematic[row][range.start..range.end]));
-                                }
-                            }
-                        });
-                        debug_assert!(!gear_ratio_numbers.spilled());
-                        Some({
-                            if gear_ratio_numbers.len() == 2 {
-                                gear_ratio_numbers.iter().product::<usize>()
-                            } else {
-                                0
-                            }
-                        })
+                        0
                     }
                 })
-                .sum::<usize>()
+            }
         })
         .sum()
 }
