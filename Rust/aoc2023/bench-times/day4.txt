@@ -1,0 +1,5 @@
+Generator Day4/(default)  time:   [77.968 ns 78.342 ns 78.742 ns]
+
+Day4 - Part1/(default)  time:   [108.95 µs 109.53 µs 110.18 µs]
+
+Day4 - Part2/(default)  time:   [162.01 µs 163.07 µs 164.35 µs]

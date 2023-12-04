@@ -17,7 +17,7 @@ All solutions are measured on a `Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz`.
 | [Day 1][day01]       | [Solution](./src/day1.rs)  | [19.991 µs](bench-times/day1.txt)  | [26.508 µs](bench-times/day1.txt)  |
 | [Day 2][day02]       | [Solution](./src/day2.rs)  | [11.239 µs](bench-times/day2.txt)  | [11.405 µs](bench-times/day2.txt)  |
 | [Day 3][day03]       | [Solution](./src/day3.rs)  | [221.32 µs](bench-times/day3.txt)  | [207.05 µs](bench-times/day3.txt)  |
-<!-- | [Day 4][day04]       | [Solution](./src/day4.rs)  | [???????us](bench-times/day4.txt)  | [???????us](bench-times/day4.txt)  | -->
+| [Day 4][day04]       | [Solution](./src/day4.rs)  | [108.95 µs](bench-times/day4.txt)  | [162.01 µs](bench-times/day4.txt)  |
 <!-- | [Day 5][day05]       | [Solution](./src/day5.rs)  | [???????us](bench-times/day5.txt)  | [???????us](bench-times/day5.txt)  | -->
 <!-- | [Day 6][day06]       | [Solution](./src/day6.rs)  | [???????us](bench-times/day6.txt)  | [???????us](bench-times/day6.txt)  | -->
 <!-- | [Day 7][day07]       | [Solution](./src/day7.rs)  | [???????us](bench-times/day7.txt)  | [???????us](bench-times/day7.txt)  | -->
