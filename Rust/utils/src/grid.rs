@@ -4,7 +4,7 @@ use std::ops::Index;
 #[derive(Debug)]
 pub struct Grid<'a, T> {
     width: usize,
-    height: usize,
+    _height: usize,
     slice: &'a [T],
 }
 
@@ -16,7 +16,7 @@ impl<'a> Grid<'a, u8> {
 
         Self {
             width,
-            height,
+            _height: height,
             slice: byte_slice,
         }
     }
@@ -32,7 +32,6 @@ impl<'a, T> Grid<'a, T> {
     pub fn row(&self, row: usize) -> &[T] {
         self.rows().nth(row).unwrap()
     }
-
 }
 
 impl<'a, T: Sync> Grid<'a, T> {

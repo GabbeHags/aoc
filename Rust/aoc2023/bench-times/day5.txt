@@ -1,0 +1,3 @@
+Day5 - Part1/(default)  time:   [32.345 µs 32.805 µs 33.373 µs]
+
+Day5 - Part2/(default)  time:   24.2759064s
