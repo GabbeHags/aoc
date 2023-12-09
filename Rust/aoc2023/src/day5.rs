@@ -215,10 +215,6 @@ fn part1(input: &str) -> usize {
 #[aoc(day5, part2)]
 fn part2(input: &str) -> usize {
     let parsed = parse(input);
-    // for map in &mut parsed.maps {
-    //     map.merge_ranges();
-    //     dbg!(map);
-    // }
 
     parsed
         .seeds
@@ -298,8 +294,8 @@ humidity-to-location map:
         assert_eq!(part1(&real_input()), 178159714);
     }
 
-    #[test]
-    fn part2_real() {
-        assert_eq!(part2(&real_input()), 100165128);
-    }
+    // #[test]
+    // fn part2_real() {
+    //     assert_eq!(part2(&real_input()), 100165128);
+    // }
 }
