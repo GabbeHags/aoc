@@ -1,0 +1,3 @@
+Day6 - Part1/(default)  time:   [263.90 ns 265.77 ns 268.38 ns]
+
+Day6 - Part2/(default)  time:   [106.62 ns 107.42 ns 108.37 ns]
