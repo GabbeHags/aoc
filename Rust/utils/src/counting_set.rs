@@ -17,6 +17,23 @@ where
         }
     }
 
+    pub fn get_max(&self) -> Option<(&T, usize)> {
+        self.iter()
+            .max_by(|(_item, count), (_other, other_count)| count.cmp(other_count))
+    }
+
+    pub fn contains(&self, item: &T) -> bool {
+        self.set.contains_key(item)
+    }
+
+    pub fn iter<'a>(&'a self) -> impl Iterator<Item = (&'a T, usize)> + 'a {
+        self.set.iter().map(|(t, count)| (t, *count))
+    }
+
+    pub fn iter_counts<'a>(&'a self) -> impl Iterator<Item = usize> + 'a {
+        self.iter().map(|(_, count)| count)
+    }
+
     pub fn increase_by_one(&mut self, item: T) {
         self.increase_with_many(item, 1);
     }
@@ -64,6 +81,27 @@ where
     }
 }
 
+impl<T> FromIterator<T> for CountingSet<T>
+where
+    T: Hash + PartialEq + Eq,
+{
+    fn from_iter<Iter: IntoIterator<Item = T>>(iter: Iter) -> Self {
+        let mut set = Self::default();
+        set.extend(iter);
+        set
+    }
+}
+
+impl<T> IntoIterator for CountingSet<T> {
+    type Item = (T, usize);
+
+    type IntoIter = <FxHashMap<T, usize> as IntoIterator>::IntoIter;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.set.into_iter()
+    }
+}
+
 impl<T> Default for CountingSet<T>
 where
     T: Hash + PartialEq + Eq,
@@ -84,8 +122,6 @@ where
     T: Hash + PartialEq + Eq,
 {
     fn from(value: Iter) -> Self {
-        let mut set = Self::default();
-        set.extend(value);
-        set
+        Self::from_iter(value)
     }
 }

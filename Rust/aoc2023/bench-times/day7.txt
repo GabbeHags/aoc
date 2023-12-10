@@ -1,0 +1,3 @@
+Day7 - Part1/(default)  time:   [4.0287 ms 4.0542 ms 4.0845 ms]
+
+Day7 - Part2/(default)  time:   [4.1082 ms 4.1366 ms 4.1713 ms]
