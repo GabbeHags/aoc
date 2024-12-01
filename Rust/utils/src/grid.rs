@@ -23,7 +23,7 @@ impl<'a> Grid<'a, u8> {
 }
 
 impl<'a, T> Grid<'a, T> {
-    pub fn rows(&'a self) -> impl Iterator<Item = &[T]> + 'a {
+    pub fn rows(&'a self) -> impl Iterator<Item = &'a [T]> + 'a {
         self.slice
             .chunks_exact(self.width + 1)
             .map(|s| &s[..self.width])

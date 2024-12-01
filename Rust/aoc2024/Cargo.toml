@@ -1,0 +1,18 @@
+[package]
+name = "aoc2024"
+version = "0.1.0"
+edition = "2021"
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+lto = "fat"
+strip = true
+
+[dependencies]
+utils = { path = "../utils" }
+aoc-runner = "0.3"
+aoc-runner-derive = "0.3"
+rayon = "1.10.0"
+bstr = "1.11.0"

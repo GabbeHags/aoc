@@ -1,5 +1,6 @@
 use std::marker::PhantomData;
-use std::str::Bytes;
+
+use bstr::{ByteSlice, Bytes};
 
 use crate::integer::*;
 
@@ -15,12 +16,12 @@ impl ParseByte for u8 {
 }
 
 pub struct ParseUnsigned<'a, T> {
-    bytes: Bytes<'a>,
+    bytes: bstr::Bytes<'a>,
     phantom: PhantomData<T>,
 }
 
 pub struct ParseSigned<'a, T> {
-    bytes: Bytes<'a>,
+    bytes: bstr::Bytes<'a>,
     phantom: PhantomData<T>,
 }
 
@@ -31,31 +32,78 @@ pub trait ParseOps {
     fn iter_signed<T: Signed<T>>(&self) -> ParseSigned<'_, T>;
 }
 
-impl ParseOps for &str {
+impl ParseOps for &[u8] {
     fn unsigned<T: Unsigned<T>>(&self) -> T {
-        match try_unsigned(&mut self.bytes()) {
-            Some(t) => t,
-            None => panic!("Unable to parse \"{self}\""),
-        }
+        self.as_bytes().bytes().unsigned()
     }
 
     fn signed<T: Signed<T>>(&self) -> T {
-        match try_signed(&mut self.bytes()) {
-            Some(t) => t,
-            None => panic!("Unable to parse \"{self}\""),
-        }
+        self.as_bytes().bytes().signed()
     }
 
-    fn iter_unsigned<T: Unsigned<T>>(&self) -> ParseUnsigned<'_, T> {
+    fn iter_unsigned<'a, T: Unsigned<T>>(&'a self) -> ParseUnsigned<'a, T> {
         ParseUnsigned {
-            bytes: self.bytes(),
+            bytes: self.as_bytes().bytes(),
             phantom: PhantomData,
         }
     }
 
     fn iter_signed<T: Signed<T>>(&self) -> ParseSigned<'_, T> {
         ParseSigned {
-            bytes: self.bytes(),
+            bytes: self.as_bytes().bytes(),
+            phantom: PhantomData,
+        }
+    }
+}
+impl ParseOps for &str {
+    fn unsigned<T: Unsigned<T>>(&self) -> T {
+        self.as_bytes().bytes().unsigned()
+    }
+
+    fn signed<T: Signed<T>>(&self) -> T {
+        self.as_bytes().bytes().signed()
+    }
+
+    fn iter_unsigned<'a, T: Unsigned<T>>(&'a self) -> ParseUnsigned<'a, T> {
+        ParseUnsigned {
+            bytes: self.as_bytes().bytes(),
+            phantom: PhantomData,
+        }
+    }
+
+    fn iter_signed<T: Signed<T>>(&self) -> ParseSigned<'_, T> {
+        ParseSigned {
+            bytes: self.as_bytes().bytes(),
+            phantom: PhantomData,
+        }
+    }
+}
+
+impl ParseOps for Bytes<'_> {
+    fn unsigned<T: Unsigned<T>>(&self) -> T {
+        match try_unsigned(&mut self.as_bytes().bytes()) {
+            Some(t) => t,
+            None => panic!("Unable to parse \"{self:?}\""),
+        }
+    }
+
+    fn signed<T: Signed<T>>(&self) -> T {
+        match try_signed(&mut self.as_bytes().bytes()) {
+            Some(t) => t,
+            None => panic!("Unable to parse \"{self:?}\""),
+        }
+    }
+
+    fn iter_unsigned<T: Unsigned<T>>(&self) -> ParseUnsigned<'_, T> {
+        ParseUnsigned {
+            bytes: self.as_bytes().bytes(),
+            phantom: PhantomData,
+        }
+    }
+
+    fn iter_signed<T: Signed<T>>(&self) -> ParseSigned<'_, T> {
+        ParseSigned {
+            bytes: self.as_bytes().bytes(),
             phantom: PhantomData,
         }
     }
