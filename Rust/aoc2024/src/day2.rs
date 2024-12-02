@@ -1,4 +1,5 @@
 use arrayvec::ArrayVec;
+use itertools::Itertools;
 use rayon::iter::{IntoParallelIterator, ParallelIterator};
 use utils::parse::ParseOps;
 
@@ -27,9 +28,11 @@ impl Report {
 
     fn is_safe_part2(&self) -> bool {
         (0..self.levels.len()).any(|i| {
-            let mut tmp = self.levels.clone();
-            tmp.swap_remove(i);
-            tmp.windows(3).all(|x| x[0].is_safe_diff(&x[1], &x[2]))
+            self.levels[..i]
+                .iter()
+                .chain(&self.levels[(i + 1)..])
+                .tuple_windows::<(&Level, &Level, &Level)>()
+                .all(|(x0, x1, x2)| x0.is_safe_diff(x1, x2))
         })
     }
 }
@@ -101,6 +104,7 @@ mod tests {
     fn part2_example() {
         assert_eq!(part2(&parse(&example_input())), 4);
     }
+
     #[test]
     fn part2_real() {
         assert_eq!(part2(&parse(&real_input())), 296);
