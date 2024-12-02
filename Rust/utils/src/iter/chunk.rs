@@ -26,7 +26,7 @@ impl<I: Iterator> Iterator for Chunk<I, 2> {
     fn next(&mut self) -> Option<Self::Item> {
         let a = self.iter.next()?;
         let b = self.iter.next()?;
-        
+
         Some([a, b])
     }
 }
