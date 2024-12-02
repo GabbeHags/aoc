@@ -15,4 +15,4 @@ utils = { path = "../utils" }
 aoc-runner = "0.3"
 aoc-runner-derive = "0.3"
 rayon = "1.10.0"
-bstr = "1.11.0"
+arrayvec = "0.7.6"
