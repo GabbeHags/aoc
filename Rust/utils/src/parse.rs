@@ -41,7 +41,7 @@ impl ParseOps for &[u8] {
         self.as_bytes().bytes().signed()
     }
 
-    fn iter_unsigned<'a, T: Unsigned<T>>(&'a self) -> ParseUnsigned<'a, T> {
+    fn iter_unsigned<T: Unsigned<T>>(&self) -> ParseUnsigned<'_, T> {
         ParseUnsigned {
             bytes: self.as_bytes().bytes(),
             phantom: PhantomData,
@@ -64,7 +64,7 @@ impl ParseOps for &str {
         self.as_bytes().bytes().signed()
     }
 
-    fn iter_unsigned<'a, T: Unsigned<T>>(&'a self) -> ParseUnsigned<'a, T> {
+    fn iter_unsigned<T: Unsigned<T>>(&self) -> ParseUnsigned<'_, T> {
         ParseUnsigned {
             bytes: self.as_bytes().bytes(),
             phantom: PhantomData,

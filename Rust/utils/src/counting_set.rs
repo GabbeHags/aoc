@@ -26,11 +26,11 @@ where
         self.set.contains_key(item)
     }
 
-    pub fn iter<'a>(&'a self) -> impl Iterator<Item = (&'a T, usize)> + 'a {
+    pub fn iter(&self) -> impl Iterator<Item = (&'_ T, usize)> + '_ {
         self.set.iter().map(|(t, count)| (t, *count))
     }
 
-    pub fn iter_counts<'a>(&'a self) -> impl Iterator<Item = usize> + 'a {
+    pub fn iter_counts(&self) -> impl Iterator<Item = usize> + '_ {
         self.iter().map(|(_, count)| count)
     }
 
@@ -55,20 +55,11 @@ where
 
     pub fn reduce_with_many(&mut self, item: &T, amount: usize) {
         if let Some(count) = self.set.get_mut(item) {
-            if *count == amount {
+            if *count <= amount {
                 self.set.remove(item);
-            } else if *count < amount {
-                self.set.remove(item);
-                if cfg!(debug_assertions) {
-                    panic!("You are trying to remove a larger count than the item have. This is a potential bug in your code. If it't not a bug use `take` instead.")
-                }
             } else {
                 *count -= amount;
             }
-            return;
-        }
-        if cfg!(debug_assertions) {
-            panic!("You are trying to remove a item that does not exist.")
         }
     }
 
