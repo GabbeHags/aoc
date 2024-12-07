@@ -140,10 +140,7 @@ type ParseOut = Vec<Instruction>;
 
 #[aoc_generator(day3)]
 fn parse(input: &str) -> ParseOut {
-    let instructions = Instruction::parse_instructions(input);
-    // dbg!(&instructions);
-    // dbg!(&instructions);
-    instructions
+    Instruction::parse_instructions(input)
 }
 
 #[aoc(day3, part1)]
