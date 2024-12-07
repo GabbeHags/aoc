@@ -10,54 +10,53 @@ impl ToGrid<&str> for Grid<u8> {
     }
 }
 
-impl ToGrid<&[&[u8]]> for Grid<u8> {
-    fn to_grid(input: &[&[u8]]) -> Grid<u8> {
+impl<T: Clone> ToGrid<&[&[T]]> for Grid<T> {
+    fn to_grid(input: &[&[T]]) -> Grid<T> {
         let width = input[0].len();
         let height = input.len();
-        // let bytes = input.concat().to_vec();
         Self::new(width, height, &input.concat())
     }
 }
 
-impl<const WIDTH: usize, const HEIGHT: usize> ToGrid<[[u8; WIDTH]; HEIGHT]> for Grid<u8> {
-    fn to_grid(input: [[u8; WIDTH]; HEIGHT]) -> Grid<u8> {
+impl<T: Clone, const WIDTH: usize, const HEIGHT: usize> ToGrid<[[T; WIDTH]; HEIGHT]> for Grid<T> {
+    fn to_grid(input: [[T; WIDTH]; HEIGHT]) -> Grid<T> {
         let width = WIDTH;
         let height = HEIGHT;
         Self::new(width, height, input.as_flattened())
     }
 }
-impl<const WIDTH: usize, const HEIGHT: usize> ToGrid<&[&[u8; WIDTH]; HEIGHT]> for Grid<u8> {
-    fn to_grid(input: &[&[u8; WIDTH]; HEIGHT]) -> Grid<u8> {
+impl<T: Clone, const WIDTH: usize, const HEIGHT: usize> ToGrid<&[&[T; WIDTH]; HEIGHT]> for Grid<T> {
+    fn to_grid(input: &[&[T; WIDTH]; HEIGHT]) -> Grid<T> {
         let width = WIDTH;
         let height = HEIGHT;
-        Self::new(width, height, input.map(|a| *a).as_flattened())
+        Self::new(width, height, input.map(|a| a.clone()).as_flattened())
     }
 }
-impl<const WIDTH: usize, const HEIGHT: usize> ToGrid<[&[u8; WIDTH]; HEIGHT]> for Grid<u8> {
-    fn to_grid(input: [&[u8; WIDTH]; HEIGHT]) -> Grid<u8> {
+impl<T: Clone, const WIDTH: usize, const HEIGHT: usize> ToGrid<[&[T; WIDTH]; HEIGHT]> for Grid<T> {
+    fn to_grid(input: [&[T; WIDTH]; HEIGHT]) -> Grid<T> {
         let width = WIDTH;
         let height = HEIGHT;
-        Self::new(width, height, input.map(|a| *a).as_flattened())
+        Self::new(width, height, input.map(|a| a.clone()).as_flattened())
     }
 }
-impl<const WIDTH: usize, const HEIGHT: usize> ToGrid<&[[u8; WIDTH]; HEIGHT]> for Grid<u8> {
-    fn to_grid(input: &[[u8; WIDTH]; HEIGHT]) -> Grid<u8> {
+impl<T: Clone, const WIDTH: usize, const HEIGHT: usize> ToGrid<&[[T; WIDTH]; HEIGHT]> for Grid<T> {
+    fn to_grid(input: &[[T; WIDTH]; HEIGHT]) -> Grid<T> {
         let width = WIDTH;
         let height = HEIGHT;
         Self::new(width, height, input.as_flattened())
     }
 }
 
-impl<const HEIGHT: usize> ToGrid<[&[u8]; HEIGHT]> for Grid<u8> {
-    fn to_grid(input: [&[u8]; HEIGHT]) -> Grid<u8> {
+impl<T: Clone, const HEIGHT: usize> ToGrid<[&[T]; HEIGHT]> for Grid<T> {
+    fn to_grid(input: [&[T]; HEIGHT]) -> Grid<T> {
         let width = input[HEIGHT].len();
         let height = HEIGHT;
         Self::new(width, height, &input.concat())
     }
 }
 
-impl<const WIDTH: usize> ToGrid<&[[u8; WIDTH]]> for Grid<u8> {
-    fn to_grid(input: &[[u8; WIDTH]]) -> Grid<u8> {
+impl<T: Clone, const WIDTH: usize> ToGrid<&[[T; WIDTH]]> for Grid<T> {
+    fn to_grid(input: &[[T; WIDTH]]) -> Grid<T> {
         let width = WIDTH;
         let height = input.len();
         Self::new(width, height, input.as_flattened())
