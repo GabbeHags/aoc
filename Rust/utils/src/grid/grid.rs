@@ -25,9 +25,29 @@ impl<T: Clone> Grid<T> {
 }
 
 impl<T> Grid<T> {
+    fn map_row_indices<F, B>(
+        &self,
+        f: F,
+    ) -> impl Iterator<Item = impl Iterator<Item = B>> + use<'_, F, B, T>
+    where
+        F: Copy + Fn(usize, usize) -> B,
+    {
+        (0..self.height).map(move |col| (0..self.width).map(move |row| f(row, col)))
+    }
+
+    fn map_column_indices<F, B>(
+        &self,
+        f: F,
+    ) -> impl Iterator<Item = impl Iterator<Item = B>> + use<'_, F, B, T>
+    where
+        F: Copy + Fn(usize, usize) -> B,
+    {
+        (0..self.width).map(move |col| (0..self.height).map(move |row| f(row, col)))
+    }
+
     pub fn get(&self, row: usize, col: usize) -> &T {
-        assert!(row <= self.height);
-        assert!(col <= self.width);
+        debug_assert!(row < self.height);
+        debug_assert!(col < self.width);
         &self.grid[self.width * row + col]
     }
 
@@ -40,11 +60,19 @@ impl<T> Grid<T> {
     }
 
     pub fn columns(&self) -> impl Iterator<Item = impl Iterator<Item = &T>> {
-        (0..self.width).map(move |col| (0..self.height).map(move |row| self.get(row, col)))
+        self.map_column_indices(|row, col| self.get(row, col))
     }
 
     pub fn column(&self, col: usize) -> impl Iterator<Item = &T> {
         self.columns().nth(col).unwrap()
+    }
+
+    pub fn iter_all_surroundings(
+        &self,
+        size: usize,
+    ) -> impl Iterator<Item = impl Iterator<Item = impl Iterator<Item = impl Iterator<Item = &T>>>>
+    {
+        self.map_row_indices(move |row, col| self.get_surrounding(row, col, size))
     }
 
     pub fn get_surrounding(
@@ -53,8 +81,8 @@ impl<T> Grid<T> {
         col: usize,
         size: usize,
     ) -> impl Iterator<Item = impl Iterator<Item = &T>> {
-        assert!(row < self.height);
-        assert!(col < self.width);
+        debug_assert!(row < self.height);
+        debug_assert!(col < self.width);
         let rows = row.saturating_sub(size)..self.height.min(row.saturating_add(size + 1));
         let cols = col.saturating_sub(size)..self.width.min(col.saturating_add(size + 1));
 
