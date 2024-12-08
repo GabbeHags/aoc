@@ -21,11 +21,11 @@ pub struct Grid<T> {
 }
 
 impl<T: Clone> Grid<T> {
-    pub(crate) fn new(width: usize, height: usize, grid: &[T]) -> Self {
+    pub(crate) fn new(width: usize, height: usize, grid: impl Iterator<Item = T>) -> Self {
         Self {
             width,
             height,
-            grid: grid.to_vec(),
+            grid: grid.collect::<Vec<T>>(),
         }
     }
 }
