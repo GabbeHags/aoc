@@ -30,7 +30,7 @@ impl<T: Clone> Grid<T> {
     }
 }
 
-impl<T: Debug> Grid<T> {
+impl<T> Grid<T> {
     fn map_row_indices<F, B>(
         &self,
         f: F,
@@ -91,7 +91,7 @@ impl<T: Debug> Grid<T> {
     }
 }
 
-impl<T: Sync + Debug> Grid<T> {
+impl<T: Sync> Grid<T> {
     pub fn par_rows(&self) -> impl ParallelIterator<Item = &[T]> {
         self.grid.par_chunks_exact(self.width)
     }
@@ -113,7 +113,7 @@ pub struct GridSurrounding<'a, T> {
     items: &'a [T],
 }
 
-impl<'a, T: Debug> GridSurrounding<'a, T> {
+impl<'a, T> GridSurrounding<'a, T> {
     fn new(
         height: usize,
         width: usize,
@@ -234,7 +234,6 @@ impl<'a, T: Debug> GridSurrounding<'a, T> {
         let top_left_to_middle_range = zip(0..self.row_size() / 2 + 1, 0..self.col_size() / 2 + 1)
             .map(|(row, col)| (-(row as isize), -(col as isize)))
             .rev();
-        dbg!(top_left_to_middle_range.clone().collect::<Vec<_>>());
         let cross_iter_top_left_to_middle =
             top_left_to_middle_range.filter_map(|(row, col)| self.get_from_middle(row, col));
 
@@ -453,7 +452,6 @@ mod tests_grid {
         ];
         let grid: Grid<u16> = Grid::to_grid(input);
         let binding = grid.get_surrounding(0, 0, 0);
-        dbg!(&binding);
         let a = binding.get_plus();
         assert_eq!(
             [
@@ -499,7 +497,6 @@ mod tests_grid {
         ];
         let grid: Grid<u16> = Grid::to_grid(input);
         let binding = grid.get_surrounding(4, 3, 1);
-        dbg!(&binding);
         let a = binding.get_plus();
         assert_eq!(
             [
@@ -551,7 +548,6 @@ mod tests_grid {
         ];
         let grid: Grid<u16> = Grid::to_grid(input);
         let binding = grid.get_surrounding(0, 0, 0);
-        dbg!(&binding);
         let a = binding.get_cross();
         assert_eq!(
             [
@@ -609,7 +605,6 @@ mod tests_grid {
         ];
         let grid: Grid<u16> = Grid::to_grid(input);
         let binding = grid.get_surrounding(4, 3, 1);
-        dbg!(&binding);
         let a = binding.get_cross();
         assert_eq!(
             [
