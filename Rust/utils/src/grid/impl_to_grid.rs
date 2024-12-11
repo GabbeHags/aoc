@@ -13,6 +13,22 @@ impl ToGrid<&str> for Grid<u8> {
         )
     }
 }
+impl ToGrid<&str> for Grid<char> {
+    fn to_grid(input: &str) -> Grid<char> {
+        let byte_slice = input.as_bytes();
+        let width = byte_slice.iter().position(|b| *b == b'\n').unwrap();
+        let height = byte_slice.len() / width;
+
+        Self::new(
+            width,
+            height,
+            byte_slice
+                .iter()
+                .filter(|b| **b != b'\n')
+                .map(|b| *b as char),
+        )
+    }
+}
 
 impl<T: Clone> ToGrid<&[&[T]]> for Grid<T> {
     fn to_grid(input: &[&[T]]) -> Grid<T> {

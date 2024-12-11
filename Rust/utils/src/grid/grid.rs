@@ -1,5 +1,4 @@
 use std::{
-    fmt::Debug,
     iter::{repeat, zip},
     ops::Range,
 };
@@ -38,7 +37,7 @@ impl<T> Grid<T> {
     where
         F: Copy + Fn(usize, usize) -> B,
     {
-        (0..self.height).map(move |col| (0..self.width).map(move |row| f(row, col)))
+        (0..self.height).map(move |row| (0..self.width).map(move |col| f(row, col)))
     }
 
     fn map_column_indices<F, B>(
@@ -87,7 +86,16 @@ impl<T> Grid<T> {
         let rows = row.saturating_sub(size)..self.height.min(row.saturating_add(size + 1));
         let cols = col.saturating_sub(size)..self.width.min(col.saturating_add(size + 1));
 
-        GridSurrounding::new(self.height, self.width, row, col, rows, cols, &self.grid)
+        GridSurrounding::new(
+            self.height,
+            self.width,
+            row,
+            col,
+            rows,
+            cols,
+            size,
+            &self.grid,
+        )
     }
 }
 
@@ -110,6 +118,7 @@ pub struct GridSurrounding<'a, T> {
     col: usize,
     row_range: Range<usize>,
     col_range: Range<usize>,
+    size: usize,
     items: &'a [T],
 }
 
@@ -121,6 +130,7 @@ impl<'a, T> GridSurrounding<'a, T> {
         col: usize,
         row_range: Range<usize>,
         col_range: Range<usize>,
+        size: usize,
         items: &'a [T],
     ) -> Self {
         Self {
@@ -130,15 +140,17 @@ impl<'a, T> GridSurrounding<'a, T> {
             col,
             row_range,
             col_range,
+            size,
             items,
         }
+    }
+    pub fn mid_point(&self) -> (usize, usize) {
+        (self.row, self.col)
     }
     fn row_size(&self) -> usize {
         self.row_range.len()
     }
-    fn col_size(&self) -> usize {
-        self.row_range.len()
-    }
+
     pub fn get_from_middle(&self, local_row: isize, local_col: isize) -> Option<&T> {
         let row = self.row.checked_add_signed(local_row)?;
         let col = self.col.checked_add_signed(local_col)?;
@@ -183,31 +195,21 @@ impl<'a, T> GridSurrounding<'a, T> {
         //  #
 
         let top_range = zip(
-            (0..self.row_size() / 2 + 1)
-                .map(|row| -(row as isize))
-                .rev(),
+            (0..(self.size + 1)).map(|row| -(row as isize)).rev(),
             repeat(0),
         );
         let plus_iter_top = top_range.filter_map(|(row, col)| self.get_from_middle(row, col));
 
         let left_range = zip(
             repeat(0),
-            (0..self.col_size() / 2 + 1)
-                .map(|row| -(row as isize))
-                .rev(),
+            (0..(self.size + 1)).map(|row| -(row as isize)).rev(),
         );
         let plus_iter_left = left_range.filter_map(|(row, col)| self.get_from_middle(row, col));
 
-        let right_range = zip(
-            repeat(0),
-            (0..self.col_size() / 2 + 1).map(|row| (row as isize)),
-        );
+        let right_range = zip(repeat(0), (0..(self.size + 1)).map(|row| (row as isize)));
         let plus_iter_right = right_range.filter_map(|(row, col)| self.get_from_middle(row, col));
 
-        let bottom_range = zip(
-            (0..self.row_size() / 2 + 1).map(|row| (row as isize)),
-            repeat(0),
-        );
+        let bottom_range = zip((0..(self.size + 1)).map(|row| (row as isize)), repeat(0));
         let plus_iter_bottom = bottom_range.filter_map(|(row, col)| self.get_from_middle(row, col));
 
         PlusIter {
@@ -220,10 +222,10 @@ impl<'a, T> GridSurrounding<'a, T> {
     pub fn get_cross(
         &self,
     ) -> CrossIter<
-        impl Iterator<Item = &T>,
-        impl Iterator<Item = &T>,
-        impl Iterator<Item = &T>,
-        impl Iterator<Item = &T>,
+        impl Iterator<Item = &T> + DoubleEndedIterator,
+        impl Iterator<Item = &T> + DoubleEndedIterator,
+        impl Iterator<Item = &T> + DoubleEndedIterator,
+        impl Iterator<Item = &T> + DoubleEndedIterator,
         &T,
     > {
         //#   #
@@ -231,29 +233,27 @@ impl<'a, T> GridSurrounding<'a, T> {
         //  #
         // # #
         //#   #
-        let top_left_to_middle_range = zip(0..self.row_size() / 2 + 1, 0..self.col_size() / 2 + 1)
+        let top_left_to_middle_range = zip(0..(self.size + 1), 0..(self.size + 1))
             .map(|(row, col)| (-(row as isize), -(col as isize)))
             .rev();
         let cross_iter_top_left_to_middle =
             top_left_to_middle_range.filter_map(|(row, col)| self.get_from_middle(row, col));
 
-        let top_right_to_middle_range = zip(0..self.row_size() / 2 + 1, 0..self.col_size() / 2 + 1)
+        let top_right_to_middle_range = zip(0..(self.size + 1), 0..(self.size + 1))
             .map(|(row, col)| (-(row as isize), col as isize))
             .rev();
         let cross_iter_top_right_to_middle =
             top_right_to_middle_range.filter_map(|(row, col)| self.get_from_middle(row, col));
 
-        let bottom_left_to_middle_range =
-            zip(0..self.row_size() / 2 + 1, 0..self.col_size() / 2 + 1)
-                .map(|(row, col)| (row as isize, -(col as isize)))
-                .rev();
+        let bottom_left_to_middle_range = zip(0..(self.size + 1), 0..(self.size + 1))
+            .map(|(row, col)| (row as isize, -(col as isize)))
+            .rev();
         let cross_iter_bottom_left_to_middle =
             bottom_left_to_middle_range.filter_map(|(row, col)| self.get_from_middle(row, col));
 
-        let bottom_right_to_middle_range =
-            zip(0..self.row_size() / 2 + 1, 0..self.col_size() / 2 + 1)
-                .map(|(row, col)| (row as isize, col as isize))
-                .rev();
+        let bottom_right_to_middle_range = zip(0..(self.size + 1), 0..(self.size + 1))
+            .map(|(row, col)| (row as isize, col as isize))
+            .rev();
         let cross_iter_bottom_right_to_middle =
             bottom_right_to_middle_range.filter_map(|(row, col)| self.get_from_middle(row, col));
 
@@ -282,16 +282,17 @@ where
 #[derive(Debug)]
 pub struct CrossIter<T, L, R, B, Inner>
 where
-    T: Iterator<Item = Inner>,
-    L: Iterator<Item = Inner>,
-    R: Iterator<Item = Inner>,
-    B: Iterator<Item = Inner>,
+    T: Iterator<Item = Inner> + DoubleEndedIterator,
+    L: Iterator<Item = Inner> + DoubleEndedIterator,
+    R: Iterator<Item = Inner> + DoubleEndedIterator,
+    B: Iterator<Item = Inner> + DoubleEndedIterator,
 {
     pub cross_iter_top_left_to_middle: T,
     pub cross_iter_top_right_to_middle: L,
     pub cross_iter_bottom_left_to_middle: R,
     pub cross_iter_bottom_right_to_middle: B,
 }
+
 #[cfg(test)]
 mod tests_grid {
     use std::iter::zip;
@@ -389,6 +390,7 @@ mod tests_grid {
             vec![vec![1, 10, 100], vec![2, 20, 200], vec![3, 30, 300]]
         )
     }
+
     #[test]
     fn test_get_surrounding_size_1_left_edge() {
         let input = [
